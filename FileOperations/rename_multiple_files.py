@@ -1,17 +1,33 @@
 import os
 
 
-def covert_str_filename_to_num_name(path_input, path_output):
+def covert_str_filename_to_num_name(path_input, path_output, digit_width):
+    """
+    Read file names from input file, which is ordered in lexicographical order. Then rename the file by the number in in lexicographical order.
+    Finally, 0 is added to the beginning of the name, when the digital width of name is smaller than defined digital width.
+
+    Parameters
+    ----------
+
+    path_input : file path of files that need to be rename.
+
+    path_output : file path of files to store, whoes files renamed.
+
+    digit_width : the width of digit.
+
+    """
     raw_names = os.listdir(path_input)
-    raw_names = [int(x[:-4]) for x in raw_names]
+    image_format = str(raw_names[0][-4:])
     for i in range(len(raw_names)):
         os.rename(os.path.join(path_input, str(
-            raw_names[i])+'.bmp'), os.path.join(path_output, "{:0>4}".format(str(i))+'.bmp'))
+            raw_names[i])), os.path.join(path_output, str(i).rjust(digit_width, '0')+image_format))
 
 
 if __name__ == "__main__":
-    path_input = "G:/data/test_20210618/reconstruction_image/"
+    path_input = "G:/data/test_20210618/几何一扎带/3kmh-1/"
     path_output = "G:/data/test_20210618/reconstruction_image/"
+    path_output = path_input
+    covert_str_filename_to_num_name(path_input, path_input, 4)
 
 
 # A = [x for x in raw_names if x>=5000 and x<=5010]
