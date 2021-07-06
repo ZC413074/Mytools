@@ -1,6 +1,29 @@
 import os
 
 
+def rename_slash_blackslash(path_input, slash_in_path=r'\\', slash_in_outpath='/'):
+    """
+    replace the "\" or "\\" in path name to "/" 
+
+    Parameters
+    ----------
+
+    path_input       : file path of files that need to be rename.
+
+    slash_in_path    : "\\" or r"\\" in input path name.
+
+    slash_in_outpath : '/' in output path name .
+
+    Tips
+    ----------
+    the path_input need to be unescaped.When we add a letter 'r' in the beginning  of the path_input, the path input will be unescaped,
+    such as path_input=r"G:\data\test_20210618\reconstruction_image".
+
+    """
+    path_output = path_input.replace(slash_in_path, slash_in_outpath)
+    return path_output
+
+
 def covert_str_filename_to_num_name(path_input, path_output, digit_width):
     """
     Read file names from input file, which is ordered in lexicographical order. Then rename the file by the number in in lexicographical order.
@@ -23,11 +46,41 @@ def covert_str_filename_to_num_name(path_input, path_output, digit_width):
             raw_names[i])), os.path.join(path_output, str(i).rjust(digit_width, '0')+image_format))
 
 
+def read_all_files(path_input, format='.txt'):
+    """
+    Read all file names from input file path, which is specified in a specific format.
+
+    Parameters
+    ----------
+
+    path_input : file path of files that need to be read.
+
+    format     : the format of files to be read.
+
+    """
+    file_names = []
+    raw_names = os.listdir(path_input)
+    full_name = [os.path.join(path_input, name) for name in raw_names]
+    for i in range(len(full_name)):
+        if os.path.splitext(full_name[i])[1] == format:
+            file_names.append(full_name[i])
+    return file_names
+
+
 if __name__ == "__main__":
-    path_input = "G:/data/test_20210618/几何一扎带/3kmh-1/"
-    path_output = "G:/data/test_20210618/reconstruction_image/"
-    path_output = path_input
-    covert_str_filename_to_num_name(path_input, path_input, 4)
+
+    ########### covert_str_filename_to_num_name #########
+    #path_input = "G:/data/test_21210705/reconstruction_image/"
+    #path_output = "G:/data/test_20210618/reconstruction_image/"
+    #path_output = path_input
+    #covert_str_filename_to_num_name(path_input, path_input, 4)
+    path_output = r"G:\data\test_20210618\reconstruction_image"
+    path_output = rename_slash_blackslash(path_output,'\\', '/')
+    print(path_output)
+    ########### read_all_files #########
+    path_input = "G:/data/test_21210705/reconstruction_image"
+    names = read_all_files(path_input, '.bmp')
+    print(names)
 
 
 # A = [x for x in raw_names if x>=5000 and x<=5010]
