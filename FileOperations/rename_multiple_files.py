@@ -70,17 +70,19 @@ def read_all_files(path_input, format='.txt'):
 if __name__ == "__main__":
 
     ########### covert_str_filename_to_num_name #########
-    #path_input = "G:/data/test_21210705/reconstruction_image/"
-    #path_output = "G:/data/test_20210618/reconstruction_image/"
-    #path_output = path_input
-    #covert_str_filename_to_num_name(path_input, path_input, 4)
-    path_output = r"G:\data\test_20210618\reconstruction_image"
-    path_output = rename_slash_blackslash(path_output,'\\', '/')
-    print(path_output)
+    path_input = r"F:\SVN\Personal_folder\zc\实验数据\test_20210714\2\1"
+    path_input = rename_slash_blackslash(path_input,'\\', '/')
+    print("input name:",path_input)
+    path_output=path_input
+    print("output name:",path_output)
+    covert_str_filename_to_num_name(path_input, path_input, 4)
+
     ########### read_all_files #########
-    path_input = "G:/data/test_21210705/reconstruction_image"
-    names = read_all_files(path_input, '.bmp')
-    print(names)
+    #path_input = r"F:\SVN\Personal_folder\zc\实验数据\test_20210714\2\1"
+    #path_input = rename_slash_blackslash(path_input,'\\', '/')
+    #print("input name:",path_input)
+    #names = read_all_files(path_input, '.bmp')
+    #print(names)
 
 
 # A = [x for x in raw_names if x>=5000 and x<=5010]
