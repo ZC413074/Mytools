@@ -70,7 +70,7 @@ def read_all_files(path_input, format='.txt'):
 if __name__ == "__main__":
 
     ########### covert_str_filename_to_num_name #########
-    path_input = r"F:\SVN\Personal_folder\zc\实验数据\test_20210714\2\1"
+    path_input = r"G:\data\test_20210728\reconstruction_image--"
     path_input = rename_slash_blackslash(path_input,'\\', '/')
     print("input name:",path_input)
     path_output=path_input
